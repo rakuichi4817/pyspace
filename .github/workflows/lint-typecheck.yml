@@ -1,0 +1,47 @@
+name: Lint and Type Check
+
+# このワークフローは、PR作成やmainブランチへのpush時に
+# ruffによるフォーマットチェックとmypyによる型チェックを
+# Python 3.10/3.11/3.12の3バージョンで実行します。
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-typecheck:
+    name: ruff format & mypy type check
+    runs-on: ubuntu-latest
+    # Pythonのバージョンごとに並列実行
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        # リポジトリのソースコードを取得
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+        # uvをインストールし、キャッシュも有効化
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+        # matrixで指定したPythonバージョンをセットアップ
+      - name: Install dependencies
+        run: uv sync --locked --all-extras --dev
+        # uvで依存パッケージをインストール（uv.lockを利用、dev依存も含む）
+      - name: Run ruff format check
+        run: uv run ruff check .
+        # ruffでコードフォーマット・静的解析チェック
+      - name: Run mypy type check
+        run: uv run mypy .
+        # mypyで型チェック
+      - name: Run pytest
+        run: uv run pytest
+        # pytestでユニットテストを実行

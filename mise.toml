@@ -1,0 +1,22 @@
+[tools]
+uv = "latest"
+
+[settings]
+python.uv_venv_auto = true
+
+[tasks.init]
+description = "Install dependencies"
+alias = "i"
+run = "uv sync --all-extras"
+
+[tasks.lint]
+run = "uvx ruff check . && uvx mypy ."
+
+[tasks.format]
+run = "uvx ruff format ."
+
+[tasks.test]
+run = "uvx pytest"
+
+[tasks.app]
+run = "uvx streamlit run src/main.py"
