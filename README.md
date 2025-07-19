@@ -1,6 +1,6 @@
 # pyspace
 
-![Lint & Type Check](https://github.com/rakuichi4817/pyspace/actions/workflows/lint-typecheck.yml/badge.svg)
+![Quality & Test](https://github.com/rakuichi4817/pyspace/actions/workflows/quality-test.yml/badge.svg)
 
 Pythonアプリケーションの実験・学習用リポジトリです。
 
@@ -28,7 +28,7 @@ pyspace/
 ├── uv.lock           # uvロックファイル
 ├── .github/
 │   └── workflows/
-│       └── lint-typecheck.yml  # CI定義
+│       └── quality-test.yml    # CI定義
 └── README.md
 ```
 
@@ -76,7 +76,7 @@ pyspace/
   - ruffによるフォーマットチェック
   - mypyによる型チェック
   - pytestによるテスト
-  を自動実行
+  を自動実行（Quality & Test job）
 
 ## 主要タスク（mise.toml）
 
