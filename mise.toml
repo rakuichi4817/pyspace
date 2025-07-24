@@ -2,6 +2,7 @@
 _.python.venv = { path = ".venv", create = true }
 
 [tools]
+python = "3.13"
 uv = "latest"
 
 [tasks.init]
