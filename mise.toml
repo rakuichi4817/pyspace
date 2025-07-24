@@ -6,7 +6,6 @@ uv = "latest"
 
 [tasks.init]
 description = "Install dependencies"
-alias = "i"
 run = "uv sync --all-extras"
 
 [tasks.lint]
