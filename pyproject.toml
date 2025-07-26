@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "litellm>=1.74.8",
     "pydantic>=2.11.7",
     "streamlit>=1.47.0",
 ]
@@ -14,4 +15,21 @@ dev = [
     "mypy>=1.17.0",
     "pytest>=8.4.1",
     "ruff>=0.12.4",
+]
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
 ]
