@@ -4,23 +4,34 @@
 
 Pythonアプリケーションの実験・学習用リポジトリです。
 
+このリポジトリには以下が含まれています：
+- **Streamlitアプリ**: AIチャットインターフェースを持つWebアプリケーション
+- **MCPサーバー**: Model Context Protocol（MCP）サーバーの実装例（郵便番号から住所取得API）
+
 ## 主な特徴
 
-- 最新のPython（>=3.12.3）で動作
+- 最新のPython（>=3.13）で動作
 - 依存管理・仮想環境は [uv](https://github.com/astral-sh/uv) を利用
 - タスク管理は [mise](https://mise.jdx.dev/) を利用
 - 静的解析・型チェック・テスト・フォーマットは ruff, mypy, pytest で自動化
-- サンプルWebアプリ（Streamlit）付き
+- サンプルWebアプリ（Streamlit）とMCPサーバー付き
 - GitHub ActionsによるCI（複数Pythonバージョンでのチェック）
 
 ## ディレクトリ構成
 
 ```text
 pyspace/
-├── src/              # アプリ本体
-│   ├── main.py       # Streamlitサンプル
+├── app/              # Streamlitアプリ
+│   ├── main.py       # メインアプリ
+│   ├── llm_call.py   # LLM呼び出し処理
+│   └── __init__.py
+├── mcp_server/       # MCPサーバー
+│   ├── sample_server.py  # サンプルMCPサーバー
+│   ├── sample_client.py  # サンプルMCPクライアント
 │   └── __init__.py
 ├── tests/            # テストコード
+│   ├── app/          # appのテスト
+│   ├── mcp_server/   # mcp_serverのテスト
 │   ├── test_sample.py
 │   └── __init__.py
 ├── mise.toml         # miseタスク定義
@@ -58,7 +69,7 @@ pyspace/
   mise test
   ```
 
-- サンプルアプリの起動（編集可能インストールで開発）
+- Streamlitアプリの起動
 
   ```sh
   mise app
@@ -67,7 +78,19 @@ pyspace/
   または
 
   ```sh
-  uvx streamlit run src/main.py
+  uv run streamlit run app/main.py
+  ```
+
+- MCPサーバーの起動
+
+  ```sh
+  mise mcp-server
+  ```
+
+- MCPクライアントの実行
+
+  ```sh
+  mise mcp-client
   ```
 
 ## CI（GitHub Actions）
@@ -80,19 +103,13 @@ pyspace/
 
 ## 主要タスク（mise.toml）
 
-- `mise run init`   : 依存パッケージのインストール（`uv sync --all-extras`）
-- `mise run lint`   : ruff & mypyによる静的解析・型チェック
-- `mise run format` : ruffによる自動フォーマット
-- `mise run test`   : pytestによるテスト
-- `mise run app`    : Streamlitアプリの起動
-
-## 依存パッケージ
-
-- pydantic
-- streamlit
-- ruff（dev）
-- mypy（dev）
-- pytest（dev）
+- `mise init`     : 依存パッケージのインストール（`uv sync --all-extras`）
+- `mise lint`     : ruff & mypyによる静的解析・型チェック
+- `mise format`   : ruffによる自動フォーマット
+- `mise test`     : pytestによるテスト
+- `mise app`      : Streamlitアプリの起動
+- `mise mcp-server` : MCPサーバーの起動
+- `mise mcp-client` : MCPクライアントの実行
 
 ---
 何か追加したい機能や質問があれば、IssueやPRでどうぞ！
