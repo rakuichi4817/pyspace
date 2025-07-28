@@ -5,8 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastmcp>=2.10.6",
     "litellm>=1.74.8",
+    "mcp>=1.12.2",
     "pydantic>=2.11.7",
+    "requests>=2.32.4",
     "streamlit>=1.47.0",
 ]
 
@@ -14,7 +17,10 @@ dependencies = [
 dev = [
     "mypy>=1.17.0",
     "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-mock>=3.14.1",
     "ruff>=0.12.4",
+    "types-requests>=2.32.4.20250611",
 ]
 
 [tool.ruff]
@@ -33,3 +39,4 @@ indent-style = "space"
 testpaths = [
     "tests",
 ]
+

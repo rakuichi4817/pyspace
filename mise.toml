@@ -11,13 +11,19 @@ description = "Install dependencies"
 run = "uv sync --all-extras"
 
 [tasks.lint]
-run = "uvx ruff check . && uvx mypy ."
+run = "uv run ruff check . && uv run mypy ."
 
 [tasks.format]
-run = "uvx ruff format ."
+run = "uv run ruff format ."
 
 [tasks.test]
-run = "uvx pytest"
+run = "uv run pytest"
 
 [tasks.app]
-run = "uvx streamlit run src/main.py"
+run = "uv run streamlit run app/main.py"
+
+[tasks.mcp-server]
+run = "uv run python mcp_server/sample_server.py"
+
+[tasks.mcp-client]
+run = "uv run python mcp_server/sample_client.py"
