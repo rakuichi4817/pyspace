@@ -1,7 +1,7 @@
 import requests
 from fastmcp import FastMCP
 
-mcp = FastMCP("Sample MCP Server", "これはテスト用のMCPサーバーです")
+mcp = FastMCP("Sample MCP Server", "これはテスト用のMCPサーバーです")  # type: ignore
 
 
 @mcp.tool()
