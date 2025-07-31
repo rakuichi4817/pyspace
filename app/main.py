@@ -65,7 +65,12 @@ async def process_chat():
     -----
     ユーザー入力を受け付け、LLMとツールを使用して応答を生成する。
     """
-    tools = await get_tools(client)
+    try:
+        tools = await get_tools(client)
+    except Exception as e:
+        st.error(f"ツールの取得に失敗しました: {str(e)}")
+        logger.error(f"ツールの取得中にエラーが発生: {str(e)}", exc_info=True)
+        return
     st.success("MCPサーバへの接続成功！")
     logger.info("MCPサーバへの接続成功！")
 

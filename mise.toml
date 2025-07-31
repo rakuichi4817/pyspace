@@ -20,7 +20,7 @@ run = "uv run ruff format ."
 run = "uv run pytest"
 
 [tasks.app]
-run = "uv run streamlit run app/main.py"
+run = "uv run python -m streamlit run app/main.py"
 
 [tasks.mcp-server]
 run = "uv run python mcp_server/sample_server.py"

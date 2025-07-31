@@ -67,7 +67,7 @@ pyspace/
   または
 
   ```sh
-  uvx streamlit run src/main.py
+  uv run streamlit run src/main.py
   ```
 
 ## CI（GitHub Actions）
@@ -80,19 +80,10 @@ pyspace/
 
 ## 主要タスク（mise.toml）
 
-- `mise run init`   : 依存パッケージのインストール（`uv sync --all-extras`）
-- `mise run lint`   : ruff & mypyによる静的解析・型チェック
-- `mise run format` : ruffによる自動フォーマット
-- `mise run test`   : pytestによるテスト
-- `mise run app`    : Streamlitアプリの起動
+- `mise init`   : 依存パッケージのインストール（`uv sync --all-extras`）
+- `mise lint`   : ruff & mypyによる静的解析・型チェック
+- `mise format` : ruffによる自動フォーマット
+- `mise test`   : pytestによるテスト
+- `mise mcp-server` : MCPサーバーの起動
+- `mise app`    : Streamlitアプリの起動（mcp-serverも別途起動する必要があります）
 
-## 依存パッケージ
-
-- pydantic
-- streamlit
-- ruff（dev）
-- mypy（dev）
-- pytest（dev）
-
----
-何か追加したい機能や質問があれば、IssueやPRでどうぞ！
