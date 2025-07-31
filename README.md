@@ -67,7 +67,7 @@ pyspace/
   または
 
   ```sh
-  uv run streamlit run src/main.py
+  uv run python -m streamlit run app/main.py
   ```
 
 ## CI（GitHub Actions）
